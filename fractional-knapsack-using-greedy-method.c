@@ -1,11 +1,15 @@
 #include <stdio.h>
 
 // Function to sort items based on their value-to-weight ratio in descending order
-void sortItems(float weight[], float profit[], float ratio[], int n) {
+void sortItems(float weight[], float profit[], float ratio[], int n)
+{
     float temp;
-    for (int i = 0; i < n; i++) {
-        for (int j = i + 1; j < n; j++) {
-            if (ratio[i] < ratio[j]) {
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            if (ratio[i] < ratio[j])
+            {
                 // Swap ratios
                 temp = ratio[i];
                 ratio[i] = ratio[j];
@@ -25,11 +29,13 @@ void sortItems(float weight[], float profit[], float ratio[], int n) {
     }
 }
 
-void knapsackGreedy(float weight[], float profit[], int n, float capacity) {
+void knapsackGreedy(float weight[], float profit[], int n, float capacity)
+{
     float ratio[50], totalProfit = 0.0, amount;
-    
+
     // Calculate value-to-weight ratio for each item
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         ratio[i] = profit[i] / weight[i];
     }
 
@@ -37,11 +43,15 @@ void knapsackGreedy(float weight[], float profit[], int n, float capacity) {
     sortItems(weight, profit, ratio, n);
 
     // Greedily pick items to maximize profit
-    for (int i = 0; i < n; i++) {
-        if (weight[i] <= capacity) {
-            capacity -= weight[i];  // Take the whole item
+    for (int i = 0; i < n; i++)
+    {
+        if (weight[i] <= capacity)
+        {
+            capacity -= weight[i]; // Take the whole item
             totalProfit += profit[i];
-        } else {
+        }
+        else
+        {
             // Take fraction of the remaining item
             amount = (capacity / weight[i]) * profit[i];
             totalProfit += amount;
@@ -53,7 +63,8 @@ void knapsackGreedy(float weight[], float profit[], int n, float capacity) {
     printf("Maximum profit that can be obtained: %.2f\n", totalProfit);
 }
 
-int main() {
+int main()
+{
     int n;
     float weight[50], profit[50], capacity;
 
@@ -62,7 +73,8 @@ int main() {
     scanf("%d", &n);
 
     // Input the weights and profits of each item
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         printf("Enter weight and profit for item %d: ", i + 1);
         scanf("%f %f", &weight[i], &profit[i]);
     }
